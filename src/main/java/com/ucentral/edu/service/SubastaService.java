@@ -1,7 +1,6 @@
 package com.ucentral.edu.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.util.List;
 
 import com.ucentral.edu.model.Subasta;
 
@@ -9,10 +8,12 @@ public interface SubastaService {
 
 	Subasta crearSubasta(Subasta newSubasta);
 
-	Page<Subasta> consultarSubastas(Pageable page);
+	List<Subasta> consultarSubastas(String filtro);
 
 	Subasta consultarSubasta(Integer idSubasta);
 
 	void eliminarSubasta(Integer idSubasta);
+
+	List<Subasta> consultarSubastasPorUsuario();
 
 }
