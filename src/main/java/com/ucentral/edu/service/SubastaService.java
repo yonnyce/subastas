@@ -14,6 +14,6 @@ public interface SubastaService {
 
 	void eliminarSubasta(Integer idSubasta);
 
-	List<Subasta> consultarSubastasPorUsuario();
+	List<Subasta> consultarSubastasPorUsuario(Integer idUsuario);
 
 }

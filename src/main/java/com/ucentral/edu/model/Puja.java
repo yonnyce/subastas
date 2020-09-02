@@ -25,6 +25,10 @@ public class Puja {
 	Integer valor;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_subasta", nullable = false)
+	Subasta subasta;
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_usuario", nullable = false)
 	Usuario usuario;
 
@@ -50,6 +54,14 @@ public class Puja {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public Subasta getSubasta() {
+		return subasta;
+	}
+
+	public void setSubasta(Subasta subasta) {
+		this.subasta = subasta;
 	}
 
 }

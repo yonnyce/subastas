@@ -6,11 +6,11 @@ import com.ucentral.edu.model.Puja;
 
 public interface PujaService {
 
-	Puja crearPuja(Puja nuevaPuja);
+	Puja crearPuja(Integer idSubasta, Integer idUsuario, Integer valorPuja);
 
 	List<Puja> consultarPujasSubasta(Integer idSubasta);
 
-	List<Puja> consultarPujasUsuario(Integer idPuja);
+	List<Puja> consultarPujasUsuario(Integer idUsuario);
 
 	Puja consultarPuja(Integer idPuja);
 
