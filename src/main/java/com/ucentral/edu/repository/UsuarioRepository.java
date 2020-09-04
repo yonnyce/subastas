@@ -1,5 +1,13 @@
 package com.ucentral.edu.repository;
 
-public interface UsuarioRepository {
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.ucentral.edu.model.User;
+
+public interface UsuarioRepository extends JpaRepository<User, Integer> {
+
+	Optional<User> getByUsername(String username);
 
 }
