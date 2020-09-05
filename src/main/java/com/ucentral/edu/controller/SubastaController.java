@@ -23,19 +23,19 @@ public class SubastaController {
 		subastaServiceImpl.crearSubasta(newSubasta);
 	}
 	
-	@GetMapping(value = "/consultarSubastas")
+	@GetMapping(value = "/consultar")
 	public String consultarSubastas(String filtro, Model model) {
 		model.addAttribute("subastas", subastaServiceImpl.consultarSubastas(filtro));
-		return "subastas/consultarSubastas";
+		return "subastas/listado";
 	}
 	
-	@GetMapping(value = "/consultarSubasta/{idSubasta}")
+	@GetMapping(value = "/consultar/{idSubasta}")
 	public String consultarSubastas(@PathVariable("idSubasta") Integer idSubasta, Model model) {
 		model.addAttribute("subasta", subastaServiceImpl.consultarSubasta(idSubasta));
 		return "subastas/consultarSubasta";
 	}
 	
-	@PostMapping(value = "/eliminarSubasta/{idSubasta}")
+	@PostMapping(value = "/eliminar/{idSubasta}")
 	public void eliminarSubasta(@PathVariable("idSubasta") Integer idSubasta) {
 		subastaServiceImpl.eliminarSubasta(idSubasta);
 	}

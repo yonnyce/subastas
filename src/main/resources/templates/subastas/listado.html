@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Lista de subastas creadas</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+</head>
+<body>
+	<h1>Listado de mis subastas</h1>
+	</br>
+	<a class="btn btn-primary" th:href="@{/Subastas/crear}" title="Crear subasta"> <i class="fas fa-file" aria-hidden="true"></i> Nueva</a>
+	</br>
+	<div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert">
+		
+	</div>
+	<ol>
+
+		<table class="table table-triped table-bordered table-hover">
+			<tr>
+				<th>Id</th>
+				<th>Nombre</th>
+				<th>Fecha inicial</th>
+				<th>Fecha final</th>
+				<th>Costo inicial</th>
+				
+				<th>Accion</th>
+				<th>Accion</th>
+				<th>Accion</th>
+			</tr>
+			<tr th:each="subasta:${subastas}">
+				<td th:text="${subasta.id}"></td>
+				<td th:text="${subasta.nombre}"></td>
+				<td th:text="${subasta.fechaInicial}"></td>
+				<td th:text="${subasta.fechaFinal}"></td>
+				<td th:text="${subasta.costoInicial}"></td>
+				 
+				 <td><a th:href="@{/Subastas/consultar/{id} (id=${subasta.id})}" class="btn btn-success">Ver</a></td>
+				 <td><a th:href="@{/Subastas/eliminar/{id} (id=${oferta.id})}" class="btn btn-warning">Eliminar</a></td>
+				
+
+			</tr>
+		</table>
+
+	</ol>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+		crossorigin="anonymous"></script>
+</body>
+</html>
