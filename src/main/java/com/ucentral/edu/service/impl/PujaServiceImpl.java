@@ -5,13 +5,16 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ucentral.edu.model.Puja;
 import com.ucentral.edu.model.Subasta;
 import com.ucentral.edu.repository.PujaRepository;
 import com.ucentral.edu.service.PujaService;
 import com.ucentral.edu.service.SubastaService;
+import com.ucentral.edu.service.UsuarioService;
 
+@Service
 public class PujaServiceImpl implements PujaService {
 
 	@Autowired
@@ -19,6 +22,9 @@ public class PujaServiceImpl implements PujaService {
 
 	@Autowired
 	private SubastaService subastaService;
+	
+	@Autowired
+	private UsuarioService usuarioService;
 
 	@Override
 	public Puja crearPuja(Integer idSubasta, Integer idUsuario, Integer valorPuja) {
@@ -35,8 +41,7 @@ public class PujaServiceImpl implements PujaService {
 
 		Puja nuevaPuja = new Puja();
 
-		// TODO: Pendiente interfaz de usuarios para consulta
-		nuevaPuja.setUsuario(null);
+		nuevaPuja.setUsuario(usuarioService.buscarUsuario(idUsuario));
 		nuevaPuja.setValor(valorPuja);
 		nuevaPuja.setSubasta(subasta);
 
