@@ -65,4 +65,12 @@ public class Usuario {
 		this.correo = correo;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 }

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -23,6 +24,9 @@ public class User {
 
 	@Column(name = "password_hash", length = 512, nullable = false)
 	private String passwordHash;
+
+	@OneToOne(mappedBy = "user")
+	private Usuario usuario;
 
 	public Integer getId() {
 		return id;
@@ -46,6 +50,14 @@ public class User {
 
 	public void setPasswordHash(String passwordHash) {
 		this.passwordHash = passwordHash;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }
