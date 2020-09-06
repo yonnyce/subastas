@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Lista de subastas creadas</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+</head>
+<body>
+	<h1>Listado de mis pujas</h1>
+	</br>
+	<a class="btn btn-primary" th:href="@{/Subastas/crear}"
+		title="Crear subasta"> <i class="fas fa-file" aria-hidden="true"></i>
+		Nueva
+	</a>
+	</br>
+	<div th:if="${msg != null}" th:text="${msg}"
+		class="alert alert-success" role="alert"></div>
+	<ol>
+		<header th:insert="fragments/menu :: menu-principal"> </header>
+		<table class="table table-triped table-bordered table-hover">
+			<tr>
+				<th>Id subasta</th>
+				<th>Nombre subasta</th>
+				<th>Fecha final subasta</th>
+				<th>Valor puja</th>
+				<th>Ganando puja</th>
+
+				<th>Accion</th>
+				<th>Accion</th>
+				<th>Accion</th>
+			</tr>
+			<tr th:each="puja:${pujasXUsuario}">
+				<td th:text="${puja.subasta.id}"></td>
+				<td th:text="${puja.subasta.nombre}"></td>
+				<td th:text="${puja.subasta.fechaFinal}"></td>
+				<td th:text="${puja.valor}"></td>
+				<td>SI</td>
+
+				<td><a th:href="@{/Subastas/consultar/{id} (id=${subasta.id})}"
+					class="btn btn-success">Ver</a></td>
+				<td><a th:href="@{/Subastas/eliminar/{id} (id=${oferta.id})}"
+					class="btn btn-warning">Eliminar</a></td>
+
+
+			</tr>
+		</table>
+
+	</ol>
+	<footer th:insert="fragments/footer :: pie-pagina" class="footer">
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+			integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+			crossorigin="anonymous"></script>
+</body>
+</html>

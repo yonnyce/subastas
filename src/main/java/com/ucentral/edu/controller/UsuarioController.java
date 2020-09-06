@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ucentral.edu.model.User;
 import com.ucentral.edu.model.Usuario;
-import com.ucentral.edu.service.impl.UsuarioServiceImpl;
+import com.ucentral.edu.service.UsuarioService;
 
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioController {
 
 	@Autowired
-	private UsuarioServiceImpl usuarioServiceImpl;
+	private UsuarioService usuarioServiceImpl;
 
 	@GetMapping(value = "/obtenerUsuarioActual")
 	public String buscarUsuario(Model model) {

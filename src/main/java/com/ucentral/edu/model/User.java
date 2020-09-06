@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -27,6 +29,10 @@ public class User {
 
 	@OneToOne(mappedBy = "user")
 	private Usuario usuario;
+
+	@ManyToOne
+	@JoinColumn(name = "id_app_role", nullable = false)
+	private AppRole rol;
 
 	public Integer getId() {
 		return id;
@@ -58,6 +64,14 @@ public class User {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public AppRole getRol() {
+		return rol;
+	}
+
+	public void setRol(AppRole rol) {
+		this.rol = rol;
 	}
 
 }

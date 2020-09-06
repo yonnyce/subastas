@@ -9,10 +9,9 @@
 	crossorigin="anonymous">
 </head>
 <body>
-<header th:insert="fragments/menu :: menu-principal"> </header>
-	<h1>Listado de subastas</h1>
+	<h1>Listado de mis subastas</h1>
 	</br>
-	<a class="btn btn-primary" th:href="@{/Subastas/crear}" title="Crear subasta"> <i class="fas fa-file" aria-hidden="true"></i>Nueva</a>
+	<a class="btn btn-primary" th:href="@{/Subastas/crear}" title="Crear subasta"> <i class="fas fa-file" aria-hidden="true"></i> Nueva</a>
 	</br>
 	<div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert">
 		
@@ -46,7 +45,6 @@
 		</table>
 
 	</ol>
-	<footer th:insert="fragments/footer :: pie-pagina" class="footer">
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"

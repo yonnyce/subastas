@@ -20,6 +20,8 @@ public class UserImpl implements UserDetails {
 
 	private String username;
 
+	private Usuario usuario;
+
 	private List<? extends GrantedAuthority> autoridades;
 
 	@Override
@@ -99,6 +101,14 @@ public class UserImpl implements UserDetails {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override

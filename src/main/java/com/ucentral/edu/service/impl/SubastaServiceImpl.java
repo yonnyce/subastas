@@ -6,6 +6,7 @@ import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.StringUtils;
 
 import com.ucentral.edu.model.Subasta;
 import com.ucentral.edu.repository.SubastaRepository;
@@ -24,6 +25,7 @@ public class SubastaServiceImpl implements SubastaService {
 
 	@Override
 	public List<Subasta> consultarSubastas(String filtro) {
+		filtro="";
 		return this.subastaRepository.filtrarSubastas(filtro);
 	}
 
