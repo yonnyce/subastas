@@ -1,7 +1,9 @@
 package com.ucentral.edu.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,11 +28,11 @@ public class Usuario {
 	@Column(length = 45)
 	String telefono;
 
-	@Column(nullable = false, unique = true, length = 45)
+	@Column(unique = true, length = 45)
 	String correo;
 
-	@OneToOne
-	@JoinColumn(name = "id_user", nullable = false)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_user")
 	User user;
 
 	public Integer getId() {

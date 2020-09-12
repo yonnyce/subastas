@@ -3,7 +3,6 @@ package com.ucentral.edu.service.impl;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ucentral.edu.model.User;
@@ -25,35 +24,14 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Autowired
 	private AppRoleRepository appRoleRepository;
 
-	@Autowired
+	/*@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
-
+*/
 	@Override
 	@Transactional
 	public Usuario crearUsuario(Usuario nuevoUsuario) {
-
-		User user = this.crearUser(nuevoUsuario);
-
-		nuevoUsuario.setUser(user);
-
 		return this.usuarioRepository.save(nuevoUsuario);
 
-	}
-
-	private User crearUser(Usuario nuevoUsuario) {
-
-		if (this.userRepository.getByUsername(nuevoUsuario.getCorreo()).isPresent()) {
-			throw new IllegalStateException("Ya existe un usuario con el correo ingresado.");
-		}
-
-		User user = new User();
-		user.setUsername(nuevoUsuario.getCorreo());
-		user.setPasswordHash(bCryptPasswordEncoder.encode("user"));
-		user.setRol(appRoleRepository.findByName("USUARIO").get());
-
-		this.userRepository.save(user);
-
-		return user;
 	}
 
 	@Override

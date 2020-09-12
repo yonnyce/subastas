@@ -1,11 +1,17 @@
 package com.ucentral.edu.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -27,12 +33,15 @@ public class User {
 	@Column(name = "password_hash", length = 512, nullable = false)
 	private String passwordHash;
 
-	@OneToOne(mappedBy = "user")
+	@Column(name = "estatus", length = 512, nullable = false)
+	private Boolean estatus;
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
 	private Usuario usuario;
 
-	@ManyToOne
-	@JoinColumn(name = "id_app_role", nullable = false)
-	private AppRole rol;
+	@ManyToMany
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private List<AppRole> roles;
 
 	public Integer getId() {
 		return id;
@@ -66,12 +75,22 @@ public class User {
 		this.usuario = usuario;
 	}
 
-	public AppRole getRol() {
-		return rol;
+	public List<AppRole> getRoles() {
+		return roles;
 	}
 
-	public void setRol(AppRole rol) {
-		this.rol = rol;
+	public void setRoles(List<AppRole> roles) {
+		this.roles = roles;
 	}
 
+	public Boolean getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(Boolean estatus) {
+		this.estatus = estatus;
+	}
+
+	
+	
 }
