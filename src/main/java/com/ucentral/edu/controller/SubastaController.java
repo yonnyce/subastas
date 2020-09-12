@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ucentral.edu.model.Subasta;
+import com.ucentral.edu.model.User;
 import com.ucentral.edu.model.UserImpl;
 import com.ucentral.edu.model.Usuario;
 import com.ucentral.edu.service.SubastaService;
@@ -50,9 +51,9 @@ public class SubastaController {
 	@GetMapping(value = "/consultarSubastasPropias")
 	public String consultarSubastasPorUsuario(Model model) {
 
-		Usuario usuario = ((UserImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsuario();
+		User user = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 
-		model.addAttribute("subastas", subastaService.consultarSubastasPorUsuario(usuario.getId()));
+		model.addAttribute("subastas", subastaService.consultarSubastasPorUsuario(user.getUsuario().getId()));
 		return "subastas/consultarSubastasPorUsuario";
 	}
 }
