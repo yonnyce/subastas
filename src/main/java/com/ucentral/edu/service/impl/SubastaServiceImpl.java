@@ -24,9 +24,8 @@ public class SubastaServiceImpl implements SubastaService {
 	}
 
 	@Override
-	public List<Subasta> consultarSubastas(String filtro) {
-		filtro="";
-		return this.subastaRepository.filtrarSubastas(filtro);
+	public List<Subasta> consultarSubastas(Integer idUsuario) {
+		return this.subastaRepository.findByUsuarioIdNot(idUsuario);
 	}
 
 	@Override
@@ -36,8 +35,7 @@ public class SubastaServiceImpl implements SubastaService {
 
 	@Override
 	public void eliminarSubasta(Integer idSubasta) {
-		Subasta subasta = this.consultarSubasta(idSubasta);
-		this.subastaRepository.delete(subasta);
+		this.subastaRepository.deleteById(idSubasta); ;
 	}
 
 	@Override

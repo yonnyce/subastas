@@ -9,7 +9,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	<h1>Nueva subasta</h1>
+	<h1>Nueva Puja</h1>
 	
 	<div th:if="${msg != null}" th:text="${msg}"
 		class="alert alert-success" role="alert"></div>
@@ -17,26 +17,16 @@
 		<header th:insert="fragments/menu :: menu-principal"> </header>
 		<div class="card">
 			<div class="card-body">
-				<form th:action="@{/Usuario/actualizarUsuario}" th:object="${usuario}" method="post">
+				<form th:action="@{/Puja/guardarPuja}" th:object="${puja}" method="get">
 				    <fieldset>
-				        <legend>Datos de usuario</legend>
+				        <legend>Datos de puja</legend>
 				        <table>
 				            <tr>
 				              <div class="row">
 				                <div class="col-md-3"> 
 				                  <div class="form-group">
-				                    <label for="username">Nombre</label>
-				                    <input type="text" th:field="*{nombre}" class="form-control" id="username" placeholder="Escriba nombre de subasta" required="required">
-				                  </div>
-				                </div>
-				              </div> 
-				            </tr>
-				            <tr>
-				              <div class="row">
-				                <div class="col-md-4"> 
-				                  <div class="form-group">
-				                    <label for="username">Telefono</label>
-				                    <input type="text" th:field="*{telefono}" class="form-control" id="username" name="username" placeholder="Escriba descripcion de subasta" required="required">
+				                    <label for="username">Nombre Subasta</label>
+				                    <input type="text" th:field="*{subasta.nombre}" class="form-control" required="required">
 				                  </div>
 				                </div>
 				              </div> 
@@ -45,15 +35,15 @@
 				              <div class="row">
 				                <div class="col-md-3"> 
 				                  <div class="form-group">
-				                    <label for="username">Correo</label>
-				                    <input type="text" th:field="*{correo}" class="form-control" id="username" name="username" placeholder="Escriba Costo inicial de subasta" required="required">
+				                    <label for="username">Valor puja</label>
+				                    <input type="text" th:field="*{valor}" class="form-control" required="required">
 				                  </div>
 				                </div>
 				              </div> 
 				            </tr>
 				            <tr>
 				                <td>
-				                    <button type="submit" title="Actualizar usuario." class="btn btn-primary">Actualizar</button>
+				                    <button type="submit" title="Guardar puja." class="btn btn-primary">Guardar</button>
 				                </td>
 				            </tr>
 				        </table>

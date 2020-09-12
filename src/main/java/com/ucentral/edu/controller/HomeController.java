@@ -84,7 +84,10 @@ public class HomeController {
 		user.setEstatus(true);
 		Usuario usuario = new Usuario();
 		usuario.setNombre(user.getUsername());
-		user.setUsuario(usuarioService.crearUsuario(usuario));
+		
+		usuario.setUser(user);
+		user.setUsuario(usuario);
+		
 		userService.saveUser(user);
 		return "redirect:/index";
 	}
@@ -94,11 +97,11 @@ public class HomeController {
 		return "formLogin";
 	}
 	
-	/*@GetMapping("/logout")
+	@GetMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
 		logoutHandler.logout(request, null, null);
 		return "redirect:/login";
-	}*/
+	}
 
 }

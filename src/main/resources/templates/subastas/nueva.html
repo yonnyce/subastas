@@ -17,9 +17,9 @@
 		<header th:insert="fragments/menu :: menu-principal"> </header>
 		<div class="card">
 			<div class="card-body">
-				<form th:action="@{/Usuario/actualizarUsuario}" th:object="${usuario}" method="post">
+				<form th:action="@{crearSubasta}" th:object="${subasta}" method="post">
 				    <fieldset>
-				        <legend>Datos de usuario</legend>
+				        <legend>Datos de subasta</legend>
 				        <table>
 				            <tr>
 				              <div class="row">
@@ -33,10 +33,12 @@
 				            </tr>
 				            <tr>
 				              <div class="row">
-				                <div class="col-md-4"> 
+				                <div class="col-md-3"> 
 				                  <div class="form-group">
-				                    <label for="username">Telefono</label>
-				                    <input type="text" th:field="*{telefono}" class="form-control" id="username" name="username" placeholder="Escriba descripcion de subasta" required="required">
+				                    <label for="username">Fecha de Inicio</label>
+				                    <input type="date" class="form-control getdate"
+								       th:field="*{fechaInicial}" placeholder="yyyy-MM-dd"
+								       th:value="${subasta.fechaInicial}?${#dates.format(subasta.fechaInicial, 'yyyy-MM-dd')}:''"/>
 				                  </div>
 				                </div>
 				              </div> 
@@ -45,15 +47,37 @@
 				              <div class="row">
 				                <div class="col-md-3"> 
 				                  <div class="form-group">
-				                    <label for="username">Correo</label>
-				                    <input type="text" th:field="*{correo}" class="form-control" id="username" name="username" placeholder="Escriba Costo inicial de subasta" required="required">
+				                    <label for="username">Fecha de Finalizacion</label>
+				                    <input type="date" class="form-control getdate"
+								       th:field="*{fechaFinal}" placeholder="yyyy-MM-dd"
+								       th:value="${subasta.fechaFinal}?${#dates.format(subasta.fechaFinal, 'yyyy-MM-dd')}:''"/>
+				                  </div>
+				                </div>
+				              </div> 
+				            </tr>
+				            <tr>
+				              <div class="row">
+				                <div class="col-md-4"> 
+				                  <div class="form-group">
+				                    <label for="username">Descripcion</label>
+				                    <input type="text" th:field="*{descripcion}" class="form-control" id="username" name="username" placeholder="Escriba descripcion de subasta" required="required">
+				                  </div>
+				                </div>
+				              </div> 
+				            </tr>
+				            <tr>
+				              <div class="row">
+				                <div class="col-md-3"> 
+				                  <div class="form-group">
+				                    <label for="username">Costo inicial</label>
+				                    <input type="text" th:field="*{costoInicial}" class="form-control" id="username" name="username" placeholder="Escriba Costo inicial de subasta" required="required">
 				                  </div>
 				                </div>
 				              </div> 
 				            </tr>
 				            <tr>
 				                <td>
-				                    <button type="submit" title="Actualizar usuario." class="btn btn-primary">Actualizar</button>
+				                    <button type="submit" title="Guardar subasta." class="btn btn-primary">Guardar</button>
 				                </td>
 				            </tr>
 				        </table>

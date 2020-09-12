@@ -54,4 +54,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return this.usuarioRepository.findByCorreo(correo).orElse(null);
 	}
 
+	@Override
+	public Usuario buscarUsuarioPorUserId(Integer id_user) {
+		return this.usuarioRepository.findByIdUser(id_user);
+	}
+
+
 }

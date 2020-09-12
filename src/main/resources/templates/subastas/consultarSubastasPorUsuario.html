@@ -30,7 +30,6 @@
 
 				<th>Accion</th>
 				<th>Accion</th>
-				<th>Accion</th>
 			</tr>
 			<tr th:each="subasta:${subastas}">
 				<td th:text="${subasta.id}"></td>
@@ -39,10 +38,10 @@
 				<td th:text="${subasta.fechaFinal}"></td>
 				<td th:text="${subasta.costoInicial}"></td>
 
-				<td><a th:href="@{/Subastas/consultar/{id} (id=${subasta.id})}"
+				<td><a th:href="@{Subastas/consultar/{id} (id=${subasta.id})}"
 					class="btn btn-success">Ver</a></td>
-				<td><a th:href="@{/Subastas/eliminar/{id} (id=${oferta.id})}"
-					class="btn btn-warning">Eliminar</a></td>
+				<td><a th:href="@{/Subastas/eliminar/{id} (id=${subasta.id})}"
+					class="btn btn-danger">Eliminar</a></td>
 
 
 			</tr>
