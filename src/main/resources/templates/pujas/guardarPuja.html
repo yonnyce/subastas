@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Lista de subastas creadas</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+</head>
+<body>
+	<h1>Nueva Puja</h1>
+	
+	<div th:if="${msg != null}" th:text="${msg}"
+		class="alert alert-success" role="alert"></div>
+	
+		<header th:insert="fragments/menu :: menu-principal"> </header>
+		<div class="card">
+			<div class="card-body">
+				<form th:action="@{/Puja/guardarPuja}" th:object="${puja}" method="get">
+				    <fieldset>
+				        <legend>Datos de puja</legend>
+				        <table>
+				            <tr>
+				              <div class="row">
+				                <div class="col-md-3"> 
+				                  <div class="form-group">
+				                    <label for="username">Nombre Subasta</label>
+				                    <input type="text" th:field="*{subasta.nombre}" class="form-control" required="required">
+				                  </div>
+				                </div>
+				              </div> 
+				            </tr>
+				            <tr>
+				              <div class="row">
+				                <div class="col-md-3"> 
+				                  <div class="form-group">
+				                    <label for="username">Valor puja</label>
+				                    <input type="text" th:field="*{valor}" class="form-control" required="required">
+				                  </div>
+				                </div>
+				              </div> 
+				            </tr>
+				            <tr>
+				                <td>
+				                    <button type="submit" title="Guardar puja." class="btn btn-primary">Guardar</button>
+				                </td>
+				            </tr>
+				        </table>
+				    </fieldset>
+				</form>
+			</div>
+		</div>
+	
+	<footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+			integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+			crossorigin="anonymous"></script>
+</body>
+</html>
