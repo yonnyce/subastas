@@ -27,25 +27,13 @@ public class PujaServiceImpl implements PujaService {
 	private UsuarioService usuarioService;
 
 	@Override
-	public Puja crearPuja(Integer idSubasta, Integer idUsuario, Integer valorPuja) {
-
-		Subasta subasta = this.subastaService.consultarSubasta(idSubasta);
-
-		if (subasta.getUsuario().getId().equals(idUsuario)) {
-			throw new IllegalStateException("Un usuario no puede realizar una puja a su propia subasta");
-		}
+	public void crearPuja(Puja puja) {
 
 		// TODO: Logica para validar que esta puja sea mayor a la puja anterior, en caso
 		// contrario lanzar excepcion de negocio. requiere consulta en jpql en la
 		// interfaz para ordenar de mayor a menor y obtener la mayor.
 
-		Puja nuevaPuja = new Puja();
-
-		nuevaPuja.setUsuario(usuarioService.buscarUsuario(idUsuario));
-		nuevaPuja.setValor(valorPuja);
-		nuevaPuja.setSubasta(subasta);
-
-		return this.pujaRepository.save(nuevaPuja);
+		this.pujaRepository.save(puja);
 	}
 
 	@Override
@@ -70,6 +58,11 @@ public class PujaServiceImpl implements PujaService {
 
 		this.pujaRepository.delete(puja);
 
+	}
+
+	@Override
+	public Puja buscarByUsuarioId(Integer idUsuario) {
+		return this.pujaRepository.buscarByUsuarioId(idUsuario);
 	}
 
 }

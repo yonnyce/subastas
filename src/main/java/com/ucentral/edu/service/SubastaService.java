@@ -8,7 +8,7 @@ public interface SubastaService {
 
 	Subasta crearSubasta(Subasta newSubasta);
 
-	List<Subasta> consultarSubastas(String filtro);
+	List<Subasta> consultarSubastas(Integer idUsuario);
 
 	Subasta consultarSubasta(Integer idSubasta);
 

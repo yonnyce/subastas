@@ -2,6 +2,7 @@ package com.ucentral.edu.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name = "subasta")
@@ -26,9 +32,13 @@ public class Subasta {
 	@Column(name = "nombre", nullable = false)
 	String nombre;
 
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "fecha_inicial", nullable = false)
 	Date fechaInicial;
 
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "fecha_final", nullable = false)
 	Date fechaFinal;
 
@@ -38,11 +48,11 @@ public class Subasta {
 	@Column(name = "costo_inicial", nullable = false)
 	Integer costoInicial;
 
-	@Column(name = "imagen", nullable = true)
+	@Column(name = "imagen")
 	Byte[] imagen;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_usuario", nullable = false)
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_usuario")
 	Usuario usuario;
 
 	public Integer getId() {

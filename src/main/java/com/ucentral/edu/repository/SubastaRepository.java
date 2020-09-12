@@ -10,8 +10,8 @@ import com.ucentral.edu.model.Subasta;
 
 public interface SubastaRepository extends JpaRepository<Subasta, Integer> {
 
-	@Query("SELECT s FROM Subasta s WHERE  LOWER(s.nombre) LIKE LOWER(CONCAT('%',:filtro,'%'))")
-	List<Subasta> filtrarSubastas(@Param("filtro") String filtro);
+	
+	List<Subasta> findByUsuarioIdNot(Integer idUsuario);
 
 	List<Subasta> findByUsuarioId(Integer idUsuario);
 

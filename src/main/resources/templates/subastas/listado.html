@@ -11,9 +11,7 @@
 <body>
 <header th:insert="fragments/menu :: menu-principal"> </header>
 	<h1>Listado de subastas</h1>
-	</br>
-	<a class="btn btn-primary" th:href="@{/Subastas/crear}" title="Crear subasta"> <i class="fas fa-file" aria-hidden="true"></i>Nueva</a>
-	</br>
+	
 	<div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert">
 		
 	</div>
@@ -28,8 +26,6 @@
 				<th>Costo inicial</th>
 				
 				<th>Accion</th>
-				<th>Accion</th>
-				<th>Accion</th>
 			</tr>
 			<tr th:each="subasta:${subastas}">
 				<td th:text="${subasta.id}"></td>
@@ -38,8 +34,7 @@
 				<td th:text="${subasta.fechaFinal}"></td>
 				<td th:text="${subasta.costoInicial}"></td>
 				 
-				 <td><a th:href="@{/Subastas/consultar/{id} (id=${subasta.id})}" class="btn btn-success">Ver</a></td>
-				 <td><a th:href="@{/Subastas/eliminar/{id} (id=${oferta.id})}" class="btn btn-warning">Eliminar</a></td>
+				 <td><a th:href="@{/Puja/crearPuja/{id} (id=${subasta.id})}" class="btn btn-success">Hacer puja</a></td>
 				
 
 			</tr>

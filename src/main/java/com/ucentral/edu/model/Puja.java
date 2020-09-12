@@ -1,5 +1,6 @@
 package com.ucentral.edu.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,15 +22,14 @@ public class Puja {
 	@Column(unique = true, nullable = false)
 	Integer id;
 
-	@Column(nullable = false)
-	Integer valor;
+	String valor;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_subasta", nullable = false)
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_subasta")
 	Subasta subasta;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_usuario", nullable = false)
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_usuario")
 	Usuario usuario;
 
 	public Integer getId() {
@@ -40,11 +40,11 @@ public class Puja {
 		this.id = id;
 	}
 
-	public Integer getValor() {
+	public String getValor() {
 		return valor;
 	}
 
-	public void setValor(Integer valor) {
+	public void setValor(String valor) {
 		this.valor = valor;
 	}
 

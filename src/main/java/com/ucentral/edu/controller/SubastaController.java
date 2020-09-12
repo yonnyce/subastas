@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ucentral.edu.model.Puja;
 import com.ucentral.edu.model.Subasta;
 import com.ucentral.edu.model.User;
 import com.ucentral.edu.model.UserImpl;
@@ -27,18 +28,43 @@ public class SubastaController {
 
 	@Autowired
 	private UsuarioService usuarioService;
-	
+
 	@Autowired
 	private UserService userService;
 
+	@GetMapping(value = "/crear")
+	public String nuevaSubasta(Subasta subasta) {
+		return "subastas/nueva";
+	}
+	
 	@PostMapping(value = "/crearSubasta")
-	public void crearSubasta(Subasta newSubasta) {
+	public String crearSubasta(Subasta newSubasta) {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+		  userDetails = (UserDetails) principal;
+		}
+		
+		User user = userService.findByUserName(userDetails.getUsername());
+		newSubasta.setUsuario(usuarioService.buscarUsuario(user.getUsuario().getId()));
+		
 		subastaService.crearSubasta(newSubasta);
+		
+		return"redirect:/Subastas/consultarSubastasPropias";
 	}
 
 	@GetMapping(value = "/consultar")
-	public String consultarSubastas(String filtro, Model model) {
-		model.addAttribute("subastas", subastaService.consultarSubastas(filtro));
+	public String consultarSubastas(Model model) {
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+		  userDetails = (UserDetails) principal;
+		}
+		
+		User user = userService.findByUserName(userDetails.getUsername());
+				
+		model.addAttribute("subastas", subastaService.consultarSubastas(user.getUsuario().getId()));
 		return "subastas/listado";
 	}
 
@@ -48,9 +74,10 @@ public class SubastaController {
 		return "subastas/consultarSubasta";
 	}
 
-	@PostMapping(value = "/eliminar/{idSubasta}")
-	public void eliminarSubasta(@PathVariable("idSubasta") Integer idSubasta) {
+	@GetMapping(value = "/eliminar/{id}")
+	public String eliminarSubasta(@PathVariable("id") Integer idSubasta) {
 		subastaService.eliminarSubasta(idSubasta);
+		return"redirect:/Subastas/consultarSubastasPropias";
 	}
 
 	@GetMapping(value = "/consultarSubastasPropias")
