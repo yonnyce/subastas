@@ -11,6 +11,8 @@ public interface UsuarioService {
 	Usuario buscarUsuario(Integer idUsuario);
 
 	Usuario buscarUsuarioPorCorreo(String correo);
+	
+	Usuario buscarUsuarioPorUserId(Integer id_user);
 
 	void actualizarUsuario(Usuario usuario);
 }

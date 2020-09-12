@@ -84,7 +84,10 @@ public class HomeController {
 		user.setEstatus(true);
 		Usuario usuario = new Usuario();
 		usuario.setNombre(user.getUsername());
-		user.setUsuario(usuarioService.crearUsuario(usuario));
+		
+		usuario.setUser(user);
+		user.setUsuario(usuario);
+		
 		userService.saveUser(user);
 		return "redirect:/index";
 	}

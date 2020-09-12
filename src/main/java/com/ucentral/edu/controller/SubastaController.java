@@ -2,6 +2,7 @@ package com.ucentral.edu.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import com.ucentral.edu.model.User;
 import com.ucentral.edu.model.UserImpl;
 import com.ucentral.edu.model.Usuario;
 import com.ucentral.edu.service.SubastaService;
+import com.ucentral.edu.service.UserService;
 import com.ucentral.edu.service.UsuarioService;
 
 @Controller
@@ -25,6 +27,9 @@ public class SubastaController {
 
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private UserService userService;
 
 	@PostMapping(value = "/crearSubasta")
 	public void crearSubasta(Subasta newSubasta) {
@@ -51,8 +56,15 @@ public class SubastaController {
 	@GetMapping(value = "/consultarSubastasPropias")
 	public String consultarSubastasPorUsuario(Model model) {
 
-		User user = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+		  userDetails = (UserDetails) principal;
+		}
+		
+		User user = userService.findByUserName(userDetails.getUsername());
+		
+		
 		model.addAttribute("subastas", subastaService.consultarSubastasPorUsuario(user.getUsuario().getId()));
 		return "subastas/consultarSubastasPorUsuario";
 	}
